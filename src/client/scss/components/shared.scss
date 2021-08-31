@@ -1,0 +1,30 @@
+.auth-switch {
+  text-align: center;
+  margin-top: 40px;
+  a {
+    text-decoration: none;
+  }
+}
+
+.message {
+  position: absolute;
+  top: 20px;
+  padding: 10px 20px;
+  background-color: tomato;
+  color: white;
+  border-radius: 10000px;
+  width: 200px;
+  text-align: center;
+  animation: goAway 0.5s ease-in-out 2s forwards;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+}

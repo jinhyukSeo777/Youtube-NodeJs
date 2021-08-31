@@ -1,0 +1,49 @@
+extends base.pug
+
+block content
+  div#videoContainer(data-id = video.id)
+    video(src="/" + video.fileUrl)
+
+    div#videoControls.videoControls
+      div.videoControls__play
+        span#play.videoControls__playBtn
+          i.fas.fa-play
+        div.videoControls__time
+          span#curTime 00:00
+          span  / 
+          span#totalTime 00:00
+
+      input(type="range", step="1", value="0", min="0")#timeLine
+
+      div.videoControls__volume
+        input(type="range",step="0.1", min="0", max="1")#volume
+        span#mute
+          i.fas.fa-volume-up
+
+      span#fullScreen
+        i.fas.fa-expand
+
+  if String(video.owner._id) === (loggedInUser ? String(loggedInUser._id) : false)
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    br
+    a(href=`${video.id}/delete`) Delete Video &rarr;
+
+  if loggedInUser
+    div.video_add-comments
+      form.video_form#commentForm
+        textarea(cols="30", rows="10" placeholder="Write Comments...")
+        button Add Comment
+
+  div.video_comments#video_comments
+    ul
+      each comment in video.comments.reverse()
+        li.video_comment(data-id=comment._id)
+          i.fas.fa-comment
+          span  #{comment.text}
+          if String(video.owner._id) === (loggedInUser ? String(loggedInUser._id) : false)
+            span#delBtn.delBtn ❌
+
+block scripts
+  script(src="/assets/js/videoPlayer.js") 
+  if loggedInUser
+    script(src="/assets/js/commentSection.js") 

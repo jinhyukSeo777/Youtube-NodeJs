@@ -1,0 +1,14 @@
+extends base.pug
+include mixins/mix
+
+block content
+  form(method="GET").search_form
+    input(type="text" placeholder="Search by Title" name="keyword")
+    button 
+      i.fas.fa-search
+
+  div.video_grid
+    each video in videos
+      +mix(video)
+    else
+      span.empty_message Sorry nothing found.

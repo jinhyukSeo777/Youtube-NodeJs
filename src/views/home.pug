@@ -1,0 +1,9 @@
+extends base.pug
+include mixins/mix
+
+block content 
+  div.video_grid
+    each video in videos
+      +mix(video)
+    else
+      span.empty_message Sorry nothing found.

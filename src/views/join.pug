@@ -1,0 +1,18 @@
+extends base.pug
+
+block content
+  h4=errorMessage
+  form(method="POST")
+    input(type="text" placeholder="name" name="name" required="true")
+    input(type="text" placeholder="username" name="username" required="true")
+    input(type="password" placeholder="password" name="password" required="true")
+    input(type="email" placeholder="email" name="email" required="true")
+    input(type="text" placeholder="location" name="location")
+    input(type="submit" value="Submit")
+    div.social-login
+      a(href="/users/github/start").social-btn.social-github
+        i.fab.fa-github
+        |  Continue with Github &rarr;
+  div.auth-switch
+    span Already have an accoun? 
+    a(href="/login") Log in now &rarr;

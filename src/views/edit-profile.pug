@@ -1,0 +1,17 @@
+extends base
+
+block content
+  h4=errorMessage
+  div.edit-avatar
+    img(src="/" + loggedInUser.avatarUrl, alt="", width="100px", height="100px")
+  form(method="POST", enctype="multipart/form-data")
+    label(for="avatar") Avatar
+    input(type="file", id="avatar", name="avatar", accept="image/*")
+    input(name="name", type="text", required, value=loggedInUser.name)
+    input(name="email", type="email", required, value=loggedInUser.email)
+    input(name="username", type="text", required, value=loggedInUser.username)
+    input(name="location", type="text", required, value=loggedInUser.location)
+    input(type="submit", value="Update Profile") 
+    if !loggedInUser.socialOnly
+      hr
+      a(href="change-password").edit-profile_password Change Password &rarr;

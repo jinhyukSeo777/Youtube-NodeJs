@@ -1,0 +1,22 @@
+//mixin
+
+.video_mixin {
+  .video_mixin_thumb {
+    height: 140px;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+  .video_mixin_data {
+    padding: 0px 15px;
+    .video_mixin_title {
+      font-size: 16px;
+    }
+    .video_mixin_meta {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+}

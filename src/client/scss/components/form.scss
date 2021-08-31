@@ -1,0 +1,17 @@
+input:not([type="range"]) {
+  all: unset;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: $red;
+  text-align: center;
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.profile_data {
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  h3 {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+}

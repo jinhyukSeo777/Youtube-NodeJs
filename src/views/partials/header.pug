@@ -1,0 +1,25 @@
+header
+  a(href="/").header_logo
+    i.fab.fa-youtube
+  nav 
+    ul
+      li
+        a(href="/search") Search Video
+      if !loggedIn
+        li
+          a(href="/join") Join
+        li
+          a(href="/login") Login
+      else
+        li
+          a(href="/videos/upload") Upload Video
+        li
+          a(href="/users/edit-profile") Edit Profile
+        li
+          a(href="/logout") Logout
+        li
+          a(href=`/users/${loggedInUser._id}`).header_profile
+            if loggedInUser.avatarUrl === ""
+              span 😀
+            else 
+              img(src="/" + loggedInUser.avatarUrl, alt="")

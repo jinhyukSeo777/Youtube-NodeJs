@@ -1,0 +1,8 @@
+extends base.pug
+
+block content
+  form(action="" method="POST")
+    input(value=`${video.title}` required=true, name="title")
+    input(value=`${video.description}` required=true, name="description")
+    input(value=`${video.hashtags.join()}` required=true, name="hashtags")
+    input(type="submit" value="Save")
