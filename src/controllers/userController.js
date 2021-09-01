@@ -122,7 +122,7 @@ export const finishGithubLogin = async (req, res) => {
       user = await userModel.create({
         name: userRequest.name,
         username: userRequest.login,
-        avatarUrl: "",
+        avatarUrl: userRequest.avatarUrl,
         email: emailObj.email,
         password: "",
         socialOnly: true,
