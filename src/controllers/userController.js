@@ -232,5 +232,3 @@ export const getShowProfile = async (req, res) => {
     videos,
   });
 };
-
-export const postShowProfile = (req, res) => {};
