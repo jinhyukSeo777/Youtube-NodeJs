@@ -22,6 +22,7 @@ export const postJoin = async (req, res) => {
     username,
     password,
     email,
+    avatarUrl: "",
     location,
   });
   return res.redirect("/login");
@@ -118,11 +119,13 @@ export const finishGithubLogin = async (req, res) => {
 
     let user = await userModel.findOne({ email: emailObj.email });
 
+    console.log(userRequest);
+
     if (!user) {
       user = await userModel.create({
         name: userRequest.name,
         username: userRequest.login,
-        avatarUrl: userRequest.avatarUrl,
+        avatarUrl: userRequest.avatar_url,
         email: emailObj.email,
         password: "",
         socialOnly: true,
@@ -221,10 +224,12 @@ export const postChangePassword = async (req, res) => {
 
 export const getShowProfile = async (req, res) => {
   const { id } = req.params;
-  const user = await userModel.findById(id).populate("videos");
+  const videos = await videoModel.find({ owner: id }).populate("owner");
+  const user = await userModel.findById(id);
   return res.render("show-profile", {
     pageTitle: "Show Profile",
     user,
+    videos,
   });
 };
 

@@ -26,7 +26,7 @@ export const publicOnlyMiddleware = (req, res, next) => {
   }
 };
 
-const s3 = new aws.s3({
+const s3 = new aws.S3({
   accessKeyId: process.env.AWS_ID,
   secretAccessKey: process.env.AWS_SECRET,
 });
@@ -41,7 +41,7 @@ export const imgUploadMiddleware = multer({
   limits: {
     fileSize: 3000000,
   },
-  storage: multerUploader,
+  //storage: multerUploader,
 });
 
 export const videoUploadMiddleware = multer({
@@ -49,5 +49,5 @@ export const videoUploadMiddleware = multer({
   limits: {
     fileSize: 10000000,
   },
-  storage: multerUploader,
+  //storage: multerUploader,
 });

@@ -47,6 +47,8 @@ export const postUpload = async (req, res) => {
     files: { video, thumb },
   } = req;
 
+  console.log(video[0].path, thumb[0].path);
+
   try {
     const newVideo = new videoModel({
       title,

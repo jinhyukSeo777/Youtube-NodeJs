@@ -14,10 +14,15 @@
     list-style: none;
   }
   .video_comment {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 15px;
     border-radius: 10000px;
     background-color: white;
     color: black;
     margin-bottom: 10px;
+    .delBtn {
+      cursor: pointer;
+    }
   }
 }

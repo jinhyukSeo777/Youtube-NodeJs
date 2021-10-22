@@ -3,14 +3,17 @@ include mixins/mix
 
 block content
   div.profile_data
-    if loggedInUser.socialOnly
-      img(src=loggedInUser.avatarUrl, alt="")
+    if loggedInUser.avatarUrl === ""
+      span 😀
     else
-      img(src="/" + loggedInUser.avatarUrl, alt="")
+      if loggedInUser.socialOnly
+        img(src=loggedInUser.avatarUrl, alt="")
+      else
+        img(src="/" + loggedInUser.avatarUrl, alt="")
     h3=user.name 
 
   div.video_grid
-    each video in user.videos
+    each video in videos
       +mix(video)
     else 
       span.empty_message Sorry nothing found.

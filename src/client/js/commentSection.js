@@ -9,6 +9,7 @@ const addComment = (text, id) => {
   const videoComment = document.getElementById("video_comments");
   const ul = videoComment.querySelector("ul");
   const newComment = document.createElement("li");
+  const commentFront = document.createElement("div");
   const icon = document.createElement("i");
   const span1 = document.createElement("span");
   const span2 = document.createElement("span");
@@ -18,9 +19,11 @@ const addComment = (text, id) => {
   span2.innerText = "❌";
   span2.addEventListener("click", handleDelete);
 
-  newComment.appendChild(icon);
-  newComment.appendChild(span1);
+  commentFront.appendChild(icon);
+  commentFront.appendChild(span1);
+  newComment.appendChild(commentFront);
   newComment.appendChild(span2);
+  span2.className = "delBtn";
   newComment.className = "video_comment";
   newComment.dataset.id = id;
 
