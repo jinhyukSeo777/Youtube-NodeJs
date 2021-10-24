@@ -7,7 +7,6 @@ import {
   getChangePassword,
   postChangePassword,
   getShowProfile,
-  postShowProfile,
 } from "../controllers/userController";
 import {
   protectorMiddleware,
@@ -30,9 +29,6 @@ userRouter
   .get(getChangePassword)
   .post(postChangePassword);
 
-userRouter
-  .route("/:id([0-9a-f]{24})")
-  .get(getShowProfile)
-  .post(postShowProfile);
+userRouter.route("/:id([0-9a-f]{24})").get(getShowProfile);
 
 export default userRouter;
