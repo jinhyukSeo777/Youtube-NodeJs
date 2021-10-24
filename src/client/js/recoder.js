@@ -1,7 +1,3 @@
-if (!crossOriginIsolated) {
-  SharedArrayBuffer = ArrayBuffer;
-}
-
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
