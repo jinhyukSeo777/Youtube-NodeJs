@@ -9,7 +9,7 @@ block content
       if loggedInUser.socialOnly
         img(src=loggedInUser.avatarUrl, alt="", width="100px", height="100px")
       else
-        img(src="/" + loggedInUser.avatarUrl, alt="", width="100px", height="100px")
+        img(src=loggedInUser.avatarUrl, alt="", width="100px", height="100px")
   form(method="POST", enctype="multipart/form-data")
     label(for="avatar") Avatar
     input(type="file", id="avatar", name="avatar", accept="image/*")

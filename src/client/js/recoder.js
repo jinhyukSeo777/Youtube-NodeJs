@@ -5,6 +5,20 @@ const video = document.getElementById("preview");
 
 let stream, recorder, videoFile;
 
+const files = {
+  input: "recording.webm",
+  output: "output.mp4",
+  thumb: "thumbnail.jpg",
+};
+
+const downloadFile = (fileUrl, fileName) => {
+  const a = document.createElement("a");
+  a.href = fileUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+};
+
 const handleDownload = async (e) => {
   startBtn.removeEventListener("click", handleDownload);
   startBtn.innerText = "Transcoding...";
@@ -13,23 +27,23 @@ const handleDownload = async (e) => {
   const ffmpeg = createFFmpeg({ log: true });
   await ffmpeg.load();
 
-  ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
+  ffmpeg.FS("writeFile", files.input, await fetchFile(videoFile));
 
-  await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
+  await ffmpeg.run("-i", files.input, "-r", "60", files.output);
 
   // -ss는 스크린샷, 1은 한장
   await ffmpeg.run(
     "-i",
-    "recording.webm",
+    files.input,
     "-ss",
     "00:00:01",
     "-frames:v",
     "1",
-    "thumbnail.jpg"
+    files.thumb
   );
 
-  const mp4File = ffmpeg.FS("readFile", "output.mp4");
-  const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg");
+  const mp4File = ffmpeg.FS("readFile", files.output);
+  const thumbFile = ffmpeg.FS("readFile", files.thumb);
 
   // 실제 data는 buffer에 저장되있음
   const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
@@ -38,17 +52,8 @@ const handleDownload = async (e) => {
   const mp4Url = URL.createObjectURL(mp4Blob);
   const thumbUrl = URL.createObjectURL(thumbBlob);
 
-  const a = document.createElement("a");
-  a.href = mp4Url;
-  a.download = "MyRecording.mp4";
-  document.body.appendChild(a);
-  a.click();
-
-  const b = document.createElement("a");
-  b.href = thumbUrl;
-  b.download = "MyThumbnail.jpg";
-  document.body.appendChild(b);
-  b.click();
+  downloadFile(mp4Url, "MyRecording.mp4");
+  downloadFile(thumbUrl, "MyThumbnail.jpg");
 
   ffmpeg.FS("unlink", "output.mp4");
   ffmpeg.FS("unlink", "thumbnail.jpg");
@@ -71,7 +76,7 @@ const handleDownload = async (e) => {
 // };
 
 const handleStart = (e) => {
-  startBtn.innerText = "Recoding";
+  startBtn.innerText = "Recording";
   startBtn.disabled = true;
   startBtn.removeEventListener("click", handleStart);
   //startBtn.addEventListener("click", handleStop);
