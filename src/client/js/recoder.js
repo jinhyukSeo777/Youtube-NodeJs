@@ -1,3 +1,4 @@
+import regeneratorRuntime from "regenerator-runtime";
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
