@@ -44,11 +44,11 @@ const handleDownload = async (e) => {
   document.body.appendChild(a);
   a.click();
 
-  const thumb = document.createElement("a");
-  a.href = thumbUrl;
-  a.download = "MyThumbnail.jpg";
-  document.body.appendChild(thumb);
-  a.click();
+  const b = document.createElement("a");
+  b.href = thumbUrl;
+  b.download = "MyThumbnail.jpg";
+  document.body.appendChild(b);
+  b.click();
 
   ffmpeg.FS("unlink", "output.mp4");
   ffmpeg.FS("unlink", "thumbnail.jpg");
@@ -71,7 +71,7 @@ const handleDownload = async (e) => {
 // };
 
 const handleStart = (e) => {
-  startBtn.innerText = "Stop Recording";
+  startBtn.innerText = "Recoding";
   startBtn.disabled = true;
   startBtn.removeEventListener("click", handleStart);
   //startBtn.addEventListener("click", handleStop);
@@ -95,10 +95,7 @@ const handleStart = (e) => {
 const init = async (e) => {
   stream = await navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: {
-      width: 1024,
-      height: 576,
-    },
+    video: true,
   });
   video.srcObject = stream;
   video.play();
