@@ -47,15 +47,13 @@ export const postUpload = async (req, res) => {
     files: { video, thumb },
   } = req;
 
-  console.log(video[0].path, thumb[0].path);
-
   try {
     const newVideo = new videoModel({
       title,
       description,
       hashtags: videoModel.formatHashtags(hashtags),
-      fileUrl: video[0].path,
-      thumbUrl: thumb[0].path,
+      fileUrl: video[0].location,
+      thumbUrl: thumb[0].location,
       owner,
     });
     await newVideo.save();
