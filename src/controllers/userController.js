@@ -173,6 +173,8 @@ export const postEdit = async (req, res) => {
     }
   }
 
+  const isHeroku = process.env.NODE_ENV === "production";
+
   const updateUser = await userModel.findByIdAndUpdate(
     _id,
     {
@@ -180,7 +182,7 @@ export const postEdit = async (req, res) => {
       email,
       username,
       location,
-      avatarUrl: file ? file.location : avatarUrl,
+      avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
     },
     { new: true }
   );

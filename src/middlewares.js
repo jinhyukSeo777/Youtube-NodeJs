@@ -31,18 +31,26 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.AWS_SECRET,
 });
 
-const multerUploader = multerS3({
+const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "wetube-final-version",
+  bucket: "wetube-final-version/images",
   acl: "public-read",
 });
+
+const s3VideoUploader = multerS3({
+  s3: s3,
+  bucket: "wetube-final-version/videos",
+  acl: "public-read",
+});
+
+const isHeroku = process.env.NODE_ENV === "production";
 
 export const imgUploadMiddleware = multer({
   dest: "uploads/avatars/",
   limits: {
     fileSize: 3000000,
   },
-  storage: multerUploader,
+  storage: isHeroku ? s3ImageUploader : undefined,
 });
 
 export const videoUploadMiddleware = multer({
@@ -50,5 +58,5 @@ export const videoUploadMiddleware = multer({
   limits: {
     fileSize: 10000000,
   },
-  storage: multerUploader,
+  storage: isHeroku ? s3VideoUploader : undefined,
 });
