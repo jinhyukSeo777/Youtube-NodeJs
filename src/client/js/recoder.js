@@ -29,28 +29,24 @@ const handleDownload = async (e) => {
   );
 
   const mp4File = ffmpeg.FS("readFile", "output.mp4");
-
   const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg");
 
   // 실제 data는 buffer에 저장되있음
   const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
-
   const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
 
   const mp4Url = URL.createObjectURL(mp4Blob);
-
   const thumbUrl = URL.createObjectURL(thumbBlob);
 
-  startBtn.innerText = "Start Recording";
   const a = document.createElement("a");
   a.href = mp4Url;
-  a.download = "MyVideo.webm";
+  a.download = "MyRecording.mp4";
   document.body.appendChild(a);
   a.click();
 
   const thumb = document.createElement("a");
   a.href = thumbUrl;
-  a.download = "MyThumb.jpg";
+  a.download = "MyThumbnail.jpg";
   document.body.appendChild(thumb);
   a.click();
 
@@ -67,32 +63,42 @@ const handleDownload = async (e) => {
   startBtn.disabled = false;
 };
 
-const handleStop = (e) => {
-  recorder.stop();
-  startBtn.innerText = "Download Recording";
-  startBtn.removeEventListener("click", handleStop);
-  startBtn.addEventListener("click", handleDownload);
-};
+// const handleStop = (e) => {
+//   recorder.stop();
+//   startBtn.innerText = "Download Recording";
+//   startBtn.removeEventListener("click", handleStop);
+//   startBtn.addEventListener("click", handleDownload);
+// };
 
 const handleStart = (e) => {
   startBtn.innerText = "Stop Recording";
+  startBtn.disabled = true;
   startBtn.removeEventListener("click", handleStart);
-  startBtn.addEventListener("click", handleStop);
-  recorder = new MediaRecorder(stream);
+  //startBtn.addEventListener("click", handleStop);
+  recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   recorder.ondataavailable = (e) => {
     videoFile = URL.createObjectURL(e.data); // blob...
     video.srcObject = null;
     video.src = videoFile;
     video.loop = true;
     video.play();
+    startBtn.innerText = "Download";
+    startBtn.disabled = false;
+    startBtn.addEventListener("click", handleDownload);
   };
   recorder.start();
+  setTimeout(() => {
+    recorder.stop();
+  }, 5000);
 };
 
 const init = async (e) => {
   stream = await navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: true,
+    video: {
+      width: 1024,
+      height: 576,
+    },
   });
   video.srcObject = stream;
   video.play();
