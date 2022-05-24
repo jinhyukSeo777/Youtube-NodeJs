@@ -27,8 +27,10 @@ export const publicOnlyMiddleware = (req, res, next) => {
 };
 
 const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ID,
-  secretAccessKey: process.env.AWS_SECRET,
+  credentials: {
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
 });
 
 const s3ImageUploader = multerS3({
