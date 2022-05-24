@@ -44,7 +44,7 @@ const s3VideoUploader = multerS3({
 });
 
 const isHeroku = process.env.NODE_ENV === "production";
-//
+
 export const imgUploadMiddleware = multer({
   dest: "uploads/avatars/",
   limits: {
