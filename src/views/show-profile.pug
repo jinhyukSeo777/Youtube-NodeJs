@@ -9,7 +9,7 @@ block content
       if loggedInUser.socialOnly
         img(src=loggedInUser.avatarUrl, alt="")
       else
-        img(src=loggedInUser.avatarUrl, alt="")
+        img(src="/"+loggedInUser.avatarUrl, alt="")
     h3=user.name 
 
   div.video_grid
