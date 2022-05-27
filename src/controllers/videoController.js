@@ -76,7 +76,7 @@ export const getDelete = async (req, res) => {
 
   const curUser = await userModel.findById(user._id);
 
-  const newUserVideo = curUser.videos.filter((element) => element !== id);
+  const newUserVideo = curUser.videos.filter((element) => element != id);
 
   curUser.videos = newUserVideo;
 
