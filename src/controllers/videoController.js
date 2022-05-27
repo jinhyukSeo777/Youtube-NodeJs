@@ -71,16 +71,18 @@ export const postUpload = async (req, res) => {
 
 export const getDelete = async (req, res) => {
   const { id } = req.params;
+  const { user } = req.session;
   await videoModel.findByIdAndDelete(id);
 
   const curUser = await userModel.findById(user._id);
-  const newUserVideo = curUser.videos.filter((element) => element != commentId);
+
+  const newUserVideo = curUser.videos.filter((element) => element !== id);
 
   curUser.videos = newUserVideo;
 
-  curUser.save();
+  await curUser.save();
 
-  res.redirect("/");
+  return res.redirect("/");
 };
 
 export const search = async (req, res) => {
