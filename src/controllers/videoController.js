@@ -72,6 +72,14 @@ export const postUpload = async (req, res) => {
 export const getDelete = async (req, res) => {
   const { id } = req.params;
   await videoModel.findByIdAndDelete(id);
+
+  const curUser = await userModel.findById(user._id);
+  const newUserVideo = curUser.videos.filter((element) => element != commentId);
+
+  curUser.videos = newUserVideo;
+
+  curUser.save();
+
   res.redirect("/");
 };
 
