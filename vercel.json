@@ -2,8 +2,36 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/**",
+      "src": "/src/server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "/src/db.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "/src/middlewares.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "/src/client/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/src/controllers/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/src/models/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/src/routers/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/src/views/**",
+      "use": "@vercel/static"
     },
     {
       "src": "package.json",
@@ -14,6 +42,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "build/server.js"
