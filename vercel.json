@@ -2,56 +2,46 @@
   "version": 2,
   "builds": [
     {
-      "src": "/src/server.js",
+      "src": "src/server.js",
       "use": "@vercel/node"
     },
     {
-      "src": "/src/db.js",
+      "src": "src/db.js",
       "use": "@vercel/node"
     },
     {
-      "src": "/src/middlewares.js",
+      "src": "src/middlewares.js",
       "use": "@vercel/node"
     },
     {
-      "src": "/src/client/**",
+      "src": "src/client/**",
       "use": "@vercel/static"
     },
     {
-      "src": "/src/controllers/**",
+      "src": "src/controllers/**",
       "use": "@vercel/static"
     },
     {
-      "src": "/src/models/**",
+      "src": "src/models/**",
       "use": "@vercel/static"
     },
     {
-      "src": "/src/routers/**",
+      "src": "src/routers/**",
       "use": "@vercel/static"
     },
     {
-      "src": "/src/views/**",
+      "src": "src/views/**",
       "use": "@vercel/static"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["build/**/*"]
-      }
     }
   ],
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "src": "/views/(.*)",
+      "dest": "/views/$1"
     },
     {
       "src": "/(.*)",
       "dest": "build/server.js"
     }
-  ],
-  "scripts": {
-    "build": "npm run build"
-  }
+  ]
 }
