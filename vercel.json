@@ -28,6 +28,10 @@
     {
       "src": "src/routers/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "src/views/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
