@@ -41,7 +41,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/build/server.js"
+      "dest": "/src/server.js"
     }
   ]
 }
