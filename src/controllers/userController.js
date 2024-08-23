@@ -119,8 +119,6 @@ export const finishGithubLogin = async (req, res) => {
 
     let user = await userModel.findOne({ email: emailObj.email });
 
-    console.log(userRequest);
-
     if (!user) {
       user = await userModel.create({
         name: userRequest.name,

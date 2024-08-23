@@ -87,7 +87,7 @@ export const getDelete = async (req, res) => {
 
 export const search = async (req, res) => {
   const { keyword } = req.query;
-  let videos = [];
+  let videos = await videoModel.find({}).populate("owner");
   if (keyword) {
     videos = await videoModel
       .find({
