@@ -14,6 +14,22 @@
       "use": "@vercel/node"
     },
     {
+      "src": "build/client/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "build/controllers/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "build/models/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "build/routers/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "build/views/**",
       "use": "@vercel/static"
     }
