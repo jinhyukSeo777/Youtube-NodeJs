@@ -36,16 +36,12 @@
   ],
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "build/$1"
-    },
-    {
       "src": "/src/(.*)",
       "dest": "src/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "build/server.js"
+      "dest": "src/server.js"
     }
   ]
 }
