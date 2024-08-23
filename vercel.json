@@ -2,42 +2,42 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "src/server.js",
       "use": "@vercel/node"
     },
     {
-      "src": "db.js",
+      "src": "src/db.js",
       "use": "@vercel/node"
     },
     {
-      "src": "middlewares.js",
+      "src": "src/middlewares.js",
       "use": "@vercel/node"
     },
     {
-      "src": "client/**",
+      "src": "src/client/**",
       "use": "@vercel/static"
     },
     {
-      "src": "controllers/**",
+      "src": "src/controllers/**",
       "use": "@vercel/static"
     },
     {
-      "src": "models/**",
+      "src": "src/models/**",
       "use": "@vercel/static"
     },
     {
-      "src": "routers/**",
+      "src": "src/routers/**",
       "use": "@vercel/static"
     },
     {
-      "src": "views/**",
+      "src": "src/views/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "src/server.js"
     }
   ]
 }
